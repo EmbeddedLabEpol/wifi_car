@@ -34,22 +34,27 @@ void loop() {
     if (results.value == przodu)
     {
       
+      motor.go_forward();
+      motor.set_power(200);
     }
     else if (results.value == tylu)
     {
-     
+     motor.go_back();
+     motor.set_power(200);
     }
     else if (results.value == _STOP)
     {
-     
+     motor.hard_stop();
     }
     else if (results.value == lewo)
     {
-     
+     motor.rotation_left();
+     motor.set_power(200);
     }
     else if (results.value == prawo)
     {
-      
+      motor.rotation_right();
+      motor.set_power(200);
     }
 
 
@@ -60,4 +65,3 @@ void loop() {
 
   motor.timeout();
 }
-
