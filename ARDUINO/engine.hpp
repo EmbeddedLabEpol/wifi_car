@@ -7,12 +7,13 @@ class Engine {
  void turn_left (int deflexion);
  void turn_right (int deflexion);
  void set_power (int power);
- void timeout ();
+ void timeout (long _time);
  void rotation_right();
  void rotation_left();
  void go_forward();
  void go_back();
  void hard_stop();
+ void set_run_time (unsigned long int t);
  private:
  volatile unsigned int power;
  volatile unsigned long run_time;
