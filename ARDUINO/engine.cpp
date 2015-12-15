@@ -27,10 +27,12 @@ void Engine::init(int pwmA, int pwmB,int BN1,int BN2,int AN1, int AN2)
  void Engine::turn_left (int deflexion){
   analogWrite (pwmA, power);
   analogWrite (pwmB, power-deflexion);
+  run_time=millis();
  }
  void Engine::turn_right (int deflexion){
   analogWrite (pwmB, power);
   analogWrite (pwmA, power-deflexion);
+  run_time=millis();
  }
 void Engine::set_power (int power){
   if (power > 255)
@@ -44,15 +46,18 @@ void Engine::set_power (int power){
  analogWrite (pwmB, power);
 run_time=millis();
 }
- void Engine::timeout (){
-  if (millis()-run_time > 2000){
+ void Engine::timeout (long _time){
+  if (millis()-run_time > _time){
     hard_stop();
   }
  }
+ void Engine::set_run_time (unsigned long int t){
+  run_time=t;
+ }
  void  Engine::rotation_right(){
   set_power(0);
-  digitalWrite(AN1,LOW);
-  digitalWrite(AN2,HIGH);
+  digitalWrite(AN1,HIGH);
+  digitalWrite(AN2,LOW);
   digitalWrite(BN1,HIGH);
   digitalWrite(BN2,LOW);
   set_power(200);
@@ -60,27 +65,29 @@ run_time=millis();
  }
  void  Engine::rotation_left(){
   set_power(0);
-  digitalWrite(AN1,HIGH);
-  digitalWrite(AN2,LOW);
+  digitalWrite(AN1,LOW);
+  digitalWrite(AN2,HIGH);
   digitalWrite(BN1,LOW);
   digitalWrite(BN2,HIGH);
-   
   run_time=millis();
  }
   void Engine::go_forward(){
     set_power(0);
-  digitalWrite(AN1,HIGH);
-  digitalWrite(AN2,LOW);
+ 
+  digitalWrite(AN1,LOW);
+  digitalWrite(AN2,HIGH);
   digitalWrite(BN1,HIGH);
   digitalWrite(BN2,LOW);
   run_time=millis();  
   }
  void Engine::go_back(){
   set_power(0);
-  digitalWrite(AN1,LOW);
-  digitalWrite(AN2,HIGH);
+  
+  digitalWrite(AN1,HIGH);
+  digitalWrite(AN2,LOW);
   digitalWrite(BN1,LOW);
   digitalWrite(BN2,HIGH);
+   
  run_time=millis();
  }
  void Engine::hard_stop (){
