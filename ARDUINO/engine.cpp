@@ -56,11 +56,13 @@ run_time=millis();
  }
  void  Engine::rotation_right(){
   set_power(0);
-  digitalWrite(AN1,HIGH);
+  
   digitalWrite(AN2,LOW);
-  digitalWrite(BN1,HIGH);
+  digitalWrite(AN1,HIGH);
+  
   digitalWrite(BN2,LOW);
-  set_power(200);
+  digitalWrite(BN1,HIGH);
+  
   run_time=millis();
  }
  void  Engine::rotation_left(){
@@ -76,15 +78,17 @@ run_time=millis();
  
   digitalWrite(AN1,LOW);
   digitalWrite(AN2,HIGH);
-  digitalWrite(BN1,HIGH);
+  
   digitalWrite(BN2,LOW);
+  digitalWrite(BN1,HIGH);
   run_time=millis();  
   }
  void Engine::go_back(){
   set_power(0);
   
-  digitalWrite(AN1,HIGH);
+  
   digitalWrite(AN2,LOW);
+  digitalWrite(AN1,HIGH);
   digitalWrite(BN1,LOW);
   digitalWrite(BN2,HIGH);
    
@@ -99,3 +103,4 @@ run_time=millis();
   digitalWrite(BN2,LOW);
   digitalWrite(BN1,LOW);
  }
+
